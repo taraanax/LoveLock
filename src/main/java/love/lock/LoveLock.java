@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 public class LoveLock {
 
     static int poskusi = 3;
+    static boolean coolingDown = false;
 
     public static void main(String[] args) {
 
@@ -44,6 +45,26 @@ public class LoveLock {
 
                     if (poskusi > 0) {
                         message.setText(getNamig(poskusi));
+                    } else {
+                        // fejk timer muehehe
+                        coolingDown = true;
+                        unlockButton.setEnabled(false);
+                        passwordField.setEnabled(false);
+                        title.setText("⏳ Zaklenjeno...");
+                        message.setText("Preveč poskusov. Počakaj 5 sekund 💭");
+
+                        Timer timer = new Timer(5000, new ActionListener() {
+                            public void actionPerformed(ActionEvent evt) {
+                                poskusi = 1;
+                                coolingDown = false;
+                                unlockButton.setEnabled(true);
+                                passwordField.setEnabled(true);
+                                title.setText("Lock in");
+                                message.setText("Oh hell nah");
+                            }
+                        });
+                        timer.setRepeats(false);
+                        timer.start();
                     }
                 }
             }
