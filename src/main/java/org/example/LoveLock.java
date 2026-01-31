@@ -1,6 +1,7 @@
+package org.example;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class LoveLock {
     public static void main(String[] args) {
