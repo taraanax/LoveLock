@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <title>LoveLock</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ffe6f0, #fff0f5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 { color: #ff4d94; }
+        input {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 2px solid #ffb3d1;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            background-color: #ff4d94;
+            color: white;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ffb3d1;
+            cursor: not-allowed;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #ff1a75;
+        }
+    </style>
+</head>
+<body>
+    <h1>LoveLock 💖</h1>
+    <div>
+        <input type="text" id="passwordInput" placeholder="Vpiši geslo">
+        <button id="unlockBtn">Odkleni</button>
+    </div>
+    <div id="message"></div>
+
+    <script>
+        const button = document.getElementById("unlockBtn");
+        const input = document.getElementById("passwordInput");
+        const message = document.getElementById("message");
+
+        let locked = false;
+
+        button.addEventListener("click", async () => {
+            if(locked) return;
+
+            const password = input.value;
+
+            try {
+                const response = await fetch("http://localhost:4567/check", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ password })
+                });
+
+                const data = await response.json();
+
+                message.textContent = data.message;
+
+                if(data.status === "correct") {
+                    button.disabled = true;
+                    input.disabled = true;
+                }
+
+                if(data.attemptsLeft === 0) {
+                    // fake timer lock
+                    locked = true;
+                    button.disabled = true;
+                    input.disabled = true;
+
+                    let countdown = 5; // 5 sekund
+                    message.textContent = `💔 Zaklenjeno! Počakaj ${countdown} sekund...`;
+
+                    const timer = setInterval(() => {
+                        countdown--;
+                        message.textContent = `💔 Zaklenjeno! Počakaj ${countdown} sekund...`;
+                        if(countdown <= 0) {
+                            clearInterval(timer);
+                            message.textContent = "Poskusi ponovno! 💖";
+                            locked = false;
+                            button.disabled = false;
+                            input.disabled = false;
+                        }
+                    }, 1000);
+                }
+
+            } catch(err) {
+                message.textContent = "Napaka pri povezavi s serverjem 😢";
+                console.error(err);
+            }
+        });
+    </script>
+</body>
+</html>
