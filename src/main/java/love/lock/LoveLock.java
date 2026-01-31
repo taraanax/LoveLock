@@ -1,91 +1,92 @@
 package love.lock;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import static spark.Spark.*;
+import com.google.gson.Gson;
 
 public class LoveLock {
 
-    static int poskusi = 3;
-    static boolean coolingDown = false;
+    // geslo
+    static final String CORRECT_PASSWORD = "21.5.";
+
+    //  poskusi
+    static int attemptsLeft = 3;
 
     public static void main(String[] args) {
 
-        JFrame frame = new JFrame("Love Lock");
-        frame.setSize(420, 260);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new FlowLayout());
+        port(4567);
+        Gson gson = new Gson();
 
-        JLabel title = new JLabel("Odkleni :3");
-        title.setFont(new Font("Arial", Font.BOLD, 18));
-
-        JLabel instruction = new JLabel("Vpiši geslo");
-
-        JPasswordField passwordField = new JPasswordField(15);
-        JButton unlockButton = new JButton("Odkleni");
-
-        JLabel message = new JLabel(" ");
-
-        String correctPassword = "21.5.";
-
-        //big boss
-        unlockButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-                String enteredPassword = new String(passwordField.getPassword());
-
-                if (enteredPassword.equals(correctPassword)) {
-                    title.setText("Odklenjeno ^_^");
-                    message.setText("Pol leta pikica pol leta aah message");
-                    unlockButton.setEnabled(false);
-                    passwordField.setEnabled(false);
-                } else {
-                    poskusi--;
-
-                    if (poskusi > 0) {
-                        message.setText(getNamig(poskusi));
-                    } else {
-                        // fejk timer muehehe
-                        coolingDown = true;
-                        unlockButton.setEnabled(false);
-                        passwordField.setEnabled(false);
-                        title.setText("⏳ Zaklenjeno...");
-                        message.setText("Preveč poskusov. Počakaj 5 sekund 💭");
-
-                        Timer timer = new Timer(5000, new ActionListener() {
-                            public void actionPerformed(ActionEvent evt) {
-                                poskusi = 1;
-                                coolingDown = false;
-                                unlockButton.setEnabled(true);
-                                passwordField.setEnabled(true);
-                                title.setText("Lock in");
-                                message.setText("Oh hell nah");
-                            }
-                        });
-                        timer.setRepeats(false);
-                        timer.start();
-                    }
-                }
+        // absolutno zero clue
+        options("/*", (request, response) -> {
+            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
             }
+
+            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+            }
+            return "OK";
         });
 
-        frame.add(title);
-        frame.add(instruction);
-        frame.add(passwordField);
-        frame.add(unlockButton);
-        frame.add(message);
-        frame.setVisible(true);
+        before((request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+            response.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
+        });
+
+
+
+        // POST request za preverjanje gesla
+        post("/check", (request, response) -> {
+
+            PasswordRequest data = gson.fromJson(request.body(), PasswordRequest.class);
+            String enteredPassword = data.password;
+
+            PasswordResponse resp = new PasswordResponse();
+
+            if (enteredPassword.equals(CORRECT_PASSWORD)) {
+                resp.status = "correct";
+                resp.message = "Odklenjeno! Srečno Valentinovo :3";
+                resp.attemptsLeft = attemptsLeft;
+            } else {
+                attemptsLeft--;
+                resp.status = "wrong";
+
+                if (attemptsLeft > 0) {
+                    resp.message = getHint(attemptsLeft);
+                    resp.attemptsLeft = attemptsLeft;
+                } else {
+                    resp.message = "Zaklenjeno, počakaj 5 sekund";
+                    resp.attemptsLeft = 0;
+                    // fejk timer reset
+                    attemptsLeft = 1;
+                }
+            }
+
+            response.type("application/json");
+            return gson.toJson(resp);
+
+        });
     }
 
-    //namigi
-    static String getNamig(int poskusi) {
-        if (poskusi == 2) {
-            return "Namig: pomemben datum";
-        } else if (poskusi == 1) {
-            return "Zadnji namig: tik pred maturo";
-        }
+    // namigi
+    private static String getHint(int attemptsLeft) {
+        if (attemptsLeft == 2) return "Pomemben datum";
+        if (attemptsLeft == 1) return "Čas mature";
         return "";
     }
 
+    //  JSON body
+    static class PasswordRequest {
+        String password;
+    }
+
+    // JSON response
+    static class PasswordResponse {
+        String status;
+        String message;
+        int attemptsLeft;
+    }
 }
