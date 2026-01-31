@@ -1,4 +1,4 @@
-package org.example;
+package love.lock;
 
 import javax.swing.*;
 import java.awt.*;
