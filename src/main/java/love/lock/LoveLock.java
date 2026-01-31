@@ -42,9 +42,9 @@ public class LoveLock {
                 } else {
                     poskusi--;
 
-                    //if (poskusi > 0) {
-                        //message.setText(getNamig(poskusi));
-                    //}
+                    if (poskusi > 0) {
+                        message.setText(getNamig(poskusi));
+                    }
                 }
             }
         });
@@ -56,4 +56,15 @@ public class LoveLock {
         frame.add(message);
         frame.setVisible(true);
     }
+
+    //namigi
+    static String getNamig(int poskusi) {
+        if (poskusi == 2) {
+            return "Namig: pomemben datum";
+        } else if (poskusi == 1) {
+            return "Zadnji namig: tik pred maturo";
+        }
+        return "";
+    }
+
 }
