@@ -18,8 +18,7 @@ public class LoveLock {
 
         JPasswordField passwordField = new JPasswordField(15);
         JButton unlockButton = new JButton("Odkleni");
-
-        JLabel message = new JLabel(" ");
+        
 
         frame.add(title);
         frame.add(instruction);
