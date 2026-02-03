@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <title>LoveLock</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #ffe6f0, #fff0f5);
+            background: linear-gradient(to right, #c3e0f3, #bcbdf5);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -14,12 +15,12 @@
             height: 100vh;
             margin: 0;
         }
-        h1 { color: #ff4d94; }
+        h1 { color: #6d82bc; }
         input {
             padding: 10px;
             font-size: 18px;
             border-radius: 8px;
-            border: 2px solid #ffb3d1;
+            border: 2px solid #6d82bc;
             margin-right: 10px;
         }
         button {
@@ -27,28 +28,42 @@
             font-size: 18px;
             border-radius: 8px;
             border: none;
-            background-color: #ff4d94;
+            background-color: #6d82bc;
             color: white;
             cursor: pointer;
         }
         button:disabled {
-            background-color: #ffb3d1;
+            background-color: #8d9dc9;
             cursor: not-allowed;
         }
         #message {
             margin-top: 20px;
             font-size: 20px;
-            color: #ff1a75;
+            color: #6d82bc;
         }
     </style>
 </head>
 <body>
-    <h1>LoveLock 💖</h1>
-    <div>
+    <h1>LoveLock <3 </h1>
+    
+    <div id="scene">
+    <!-- srčki v ozadju -->
+    <img class="heart-bg" src="assets/heart1.png" style="top:20px; left:50px;">
+    <img class="heart-bg" src="assets/heart2.png" style="top:80px; left:200px;">
+    <img class="heart-bg" src="assets/heart1.png" style="top:150px; left:100px;">
+
+    <!-- glavni lock -->
+    <div id="lock-container">
+        <img id="lock" src="assets/lock.png">
         <input type="text" id="passwordInput" placeholder="Vpiši geslo">
-        <button id="unlockBtn">Odkleni</button>
+        <img id="unlockBtn" src="assets/button.png">
+        <div id="message"></div>
     </div>
-    <div id="message"></div>
+
+    <!-- mačka desno spodaj -->
+    <img id="cat" src="assets/cat1.png">
+    <div id="hint">💬 Namig!</div>
+    </div>
 
     <script>
         const button = document.getElementById("unlockBtn");
@@ -106,5 +121,7 @@
             }
         });
     </script>
+    <script src="script.js"></script>
+
 </body>
 </html>
