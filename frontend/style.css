@@ -1,0 +1,41 @@
+#pixel-scene {
+    position: relative;
+    width: 300px;
+    height: 220px;
+    margin-bottom: 20px;
+    image-rendering: pixelated;
+}
+
+#pixel-scene img {
+    position: absolute;
+    image-rendering: pixelated;
+}
+
+#lock {
+    left: 110px;
+    top: 80px;
+}
+
+#heart {
+    left: 135px;
+    top: 40px;
+}
+
+#cat {
+    left: 10px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+#cat-hint {
+    position: absolute;
+    left: 60px;
+    bottom: 0;
+    background: #fff0f5;
+    border: 2px solid #ffb3d1;
+    border-radius: 8px;
+    padding: 6px 8px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #ff4d94;
+}
