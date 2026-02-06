@@ -1,3 +1,5 @@
+
+
 /* pixel art crisp */
 img {
 image-rendering: pixelated;
@@ -102,10 +104,36 @@ font-family: "PixelFont", monospace;
 
 /* button under lock */
 #button {
-width: 120px;
+width: 140px;
+height: 60px;
+
+border: none;
+background: transparent;
+background-image: url("button.png");
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+
 cursor: pointer;
+
+font-family: "PixelFont", monospace;
+font-size: 18px;
+color: #3a4a77;
+
+/* center text */
+display: flex;
+align-items: center;
+justify-content: center;
+
+/* da se ne selekta */
 user-select: none;
 }
+
+#button:active {
+transform: translateY(2px);
+}
+
+
 
 /* ----------------------------
 CAT AREA
