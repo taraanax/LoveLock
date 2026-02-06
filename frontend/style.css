@@ -128,23 +128,28 @@ width: 190px;
 /* speech bubble left of cat */
 #speech-wrapper {
 position: relative;
-width: 180px;
+width: 220px;
 }
 
 #speech {
-width: 180px;
+width: 220px;
 display: block;
 }
 
 /* text inside bubble */
 #hint-text {
 position: absolute;
-top: 22px;
-left: 24px;
-width: 130px;
+top: 70px;
+left: 38px;
+width: 140px;
+height: 60px;
 
 margin: 0;
-font-size: 12px;
-color: #444;
+font-size: 15px;
+color: #222;
 line-height: 1.2;
+font-family: "PixelFont", monospace;
+
+overflow: hidden;
+word-wrap: break-word;
 }
