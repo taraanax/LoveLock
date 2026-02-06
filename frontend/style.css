@@ -1,41 +1,111 @@
-#pixel-scene {
-    position: relative;
-    width: 300px;
-    height: 220px;
-    margin-bottom: 20px;
-    image-rendering: pixelated;
+body {
+margin: 0;
+height: 100vh;
+font-family: Arial, sans-serif;
+
+/* srčki so BACKGROUND in ne prekrivajo ničesar */
+background-color: #dbe9f6;
+background-image: url("heart1.png");
+background-repeat: repeat;
+
+/* več prostora med srčki */
+background-size: 110px;
+animation: heartBeat 1s infinite;
 }
 
-#pixel-scene img {
-    position: absolute;
-    image-rendering: pixelated;
+/* utripanje backgrounda */
+@keyframes heartBeat {
+0%, 100% { background-image: url("heart1.png"); }
+50% { background-image: url("heart2.png"); }
+}
+
+#container {
+width: 100%;
+height: 100%;
+position: relative;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+#lock-area {
+margin-top: 70px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 14px;
+}
+
+#lock-wrapper {
+position: relative;
+width: 170px;
 }
 
 #lock {
-    left: 110px;
-    top: 80px;
+width: 170px;
+display: block;
 }
 
-#heart {
-    left: 135px;
-    top: 40px;
+/* input NA sliki locka */
+#password {
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+
+/* to je približno na "tablici" locka */
+bottom: 26px;
+
+width: 110px;
+padding: 6px 8px;
+font-size: 14px;
+
+border: none;
+outline: none;
+border-radius: 6px;
+
+text-align: center;
+background: rgba(255,255,255,0.85);
+}
+
+#button {
+width: 110px;
+cursor: pointer;
+}
+
+#cat-area {
+position: absolute;
+bottom: 45px;
+right: 70px;
+
+display: flex;
+align-items: flex-end;
+gap: 12px;
 }
 
 #cat {
-    left: 10px;
-    bottom: 10px;
-    cursor: pointer;
+width: 95px;
 }
 
-#cat-hint {
-    position: absolute;
-    left: 60px;
-    bottom: 0;
-    background: #fff0f5;
-    border: 2px solid #ffb3d1;
-    border-radius: 8px;
-    padding: 6px 8px;
-    font-family: monospace;
-    font-size: 12px;
-    color: #ff4d94;
+#speech-wrapper {
+position: relative;
+width: 150px;
+}
+
+#speech {
+width: 150px;
+display: block;
+}
+
+/* tekst znotraj hint bubble */
+#hint-text {
+position: absolute;
+top: 18px;
+left: 18px;
+width: 110px;
+
+margin: 0;
+font-size: 12px;
+color: #444;
+line-height: 1.2;
 }

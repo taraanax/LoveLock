@@ -1,41 +1,32 @@
-const heart = document.querySelectorAll(".heart-bg");
 const cat = document.getElementById("cat");
-const catHint = document.getElementById("hint");
+const button = document.getElementById("button");
+const input = document.getElementById("password");
+const hintText = document.getElementById("hint-text");
 
-let heartFrame = 1;
-let catFrame = 1;
+let catToggle = false;
 
-// ❤️ utripajoči srčki
+// animacija mačke
 setInterval(() => {
-    heartFrame = heartFrame === 1 ? 2 : 1;
-    heart.src = `assets/heart${heartFrame}.png`;
+cat.src = catToggle ? "cat1.png" : "cat2.png";
+catToggle = !catToggle;
 }, 500);
 
-// 🐱 mačka se premika
-setInterval(() => {
-    catFrame = catFrame === 1 ? 2 : 1;
-    cat.src = `assets/cat${catFrame}.png`;
-}, 700);
-
-const hints = [
-    "💬 Spomni se datuma.",
-    "💬 Nekaj romantičnega 💖",
-    "💬 To ni PIN kartice 😼",
-    "💬 Poglej ključavnico..."
-];
-
-let hintIndex = 0;
-
-cat.addEventListener("click", () => {
-    hintIndex = (hintIndex + 1) % hints.length;
-    catHint.textContent = hints[hintIndex];
-});
-
-if (data.status === "wrong") {
-    heart.style.opacity = "0.3";
-}
+button.addEventListener("click", () => {
+fetch("http://localhost:4567/check", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({ password: input.value })
+})
+.then(res => res.json())
+.then(data => {
+hintText.innerText = data.message;
 
 if (data.status === "correct") {
-    catHint.textContent = "💬 Yay! Odklenjeno 💖";
-    lock.src = "assets/lock_open.png";
+hintText.innerText = "ODKLENJENO 💙";
 }
+})
+.catch(() => {
+hintText.innerText = "Muca ne najde strežnika 😿";
+});
+});
+

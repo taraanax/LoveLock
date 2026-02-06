@@ -1,127 +1,39 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <title>LoveLock</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #c3e0f3, #bcbdf5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        h1 { color: #6d82bc; }
-        input {
-            padding: 10px;
-            font-size: 18px;
-            border-radius: 8px;
-            border: 2px solid #6d82bc;
-            margin-right: 10px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            border-radius: 8px;
-            border: none;
-            background-color: #6d82bc;
-            color: white;
-            cursor: pointer;
-        }
-        button:disabled {
-            background-color: #8d9dc9;
-            cursor: not-allowed;
-        }
-        #message {
-            margin-top: 20px;
-            font-size: 20px;
-            color: #6d82bc;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Love Lock 💙</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>LoveLock <3 </h1>
-    
-    <div id="scene">
-    <!-- srčki v ozadju -->
-    <img class="heart-bg" src="assets/heart1.png" style="top:20px; left:50px;">
-    <img class="heart-bg" src="assets/heart2.png" style="top:80px; left:200px;">
-    <img class="heart-bg" src="assets/heart1.png" style="top:150px; left:100px;">
 
-    <!-- glavni lock -->
-    <div id="lock-container">
-        <img id="lock" src="assets/lock.png">
-        <input type="text" id="passwordInput" placeholder="Vpiši geslo">
-        <img id="unlockBtn" src="assets/button.png">
-        <div id="message"></div>
-    </div>
+<div id="container">
 
-    <!-- mačka desno spodaj -->
-    <img id="cat" src="assets/cat1.png">
-    <div id="hint">💬 Namig!</div>
-    </div>
+<div id="lock-area">
+<div id="lock-wrapper">
+<img id="lock" src="lock.png" alt="lock" />
 
-    <script>
-        const button = document.getElementById("unlockBtn");
-        const input = document.getElementById("passwordInput");
-        const message = document.getElementById("message");
+<!-- input je NA lock sliki -->
+<input id="password" type="text" placeholder="geslo..." />
+</div>
 
-        let locked = false;
+<!-- button POD lockom -->
+<img id="button" src="button.png" alt="unlock button" />
+</div>
 
-        button.addEventListener("click", async () => {
-            if(locked) return;
+<div id="cat-area">
+<!-- speech bubble levo -->
+<div id="speech-wrapper">
+<img id="speech" src="hint.png" alt="hint bubble" />
+<p id="hint-text">Mijav~ 🐾</p>
+</div>
 
-            const password = input.value;
+<img id="cat" src="cat1.png" alt="cat" />
+</div>
 
-            try {
-                const response = await fetch("http://localhost:4567/check", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ password })
-                });
+</div>
 
-                const data = await response.json();
-
-                message.textContent = data.message;
-
-                if(data.status === "correct") {
-                    button.disabled = true;
-                    input.disabled = true;
-                }
-
-                if(data.attemptsLeft === 0) {
-                    // fake timer lock
-                    locked = true;
-                    button.disabled = true;
-                    input.disabled = true;
-
-                    let countdown = 5; // 5 sekund
-                    message.textContent = `💔 Zaklenjeno! Počakaj ${countdown} sekund...`;
-
-                    const timer = setInterval(() => {
-                        countdown--;
-                        message.textContent = `💔 Zaklenjeno! Počakaj ${countdown} sekund...`;
-                        if(countdown <= 0) {
-                            clearInterval(timer);
-                            message.textContent = "Poskusi ponovno! 💖";
-                            locked = false;
-                            button.disabled = false;
-                            input.disabled = false;
-                        }
-                    }, 1000);
-                }
-
-            } catch(err) {
-                message.textContent = "Napaka pri povezavi s serverjem 😢";
-                console.error(err);
-            }
-        });
-    </script>
-    <script src="script.js"></script>
-
+<script src="script.js"></script>
 </body>
 </html>
