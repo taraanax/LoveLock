@@ -1,78 +1,110 @@
+/* pixel art crisp */
+img {
+image-rendering: pixelated;
+}
+
 body {
 margin: 0;
+width: 100vw;
 height: 100vh;
-font-family: Arial, sans-serif;
+overflow: hidden;
 
-/* srčki so BACKGROUND in ne prekrivajo ničesar */
-background-color: #dbe9f6;
+font-family: Arial, sans-serif;
+background: #dbe9f6;
+}
+
+/* ----------------------------
+HEARTS BACKGROUND FULLSCREEN
+---------------------------- */
+#hearts-layer {
+position: fixed;
+inset: 0;
+z-index: 0;
+pointer-events: none;
+opacity: 0.55;
+
 background-image: url("heart1.png");
 background-repeat: repeat;
 
-/* več prostora med srčki */
-background-size: 110px;
+/* tile = spacing */
+background-size: 220px 220px;
+
 animation: heartBeat 1s infinite;
 }
 
-/* utripanje backgrounda */
+/* SRČKI MANJŠI: ker si dala transparent border, se efektivno zmanjša */
 @keyframes heartBeat {
 0%, 100% { background-image: url("heart1.png"); }
 50% { background-image: url("heart2.png"); }
 }
 
+/* ----------------------------
+UI CANVAS (base size)
+---------------------------- */
 #container {
-width: 100%;
-height: 100%;
-position: relative;
+width: 900px;
+height: 650px;
 
-display: flex;
-flex-direction: column;
-align-items: center;
+position: absolute;
+left: 50%;
+top: 50%;
+
+transform: translate(-50%, -50%);
+overflow: visible;
+z-index: 2;
 }
 
+/* ----------------------------
+LOCK AREA
+---------------------------- */
 #lock-area {
-margin-top: 70px;
+margin-top: 85px;
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 14px;
+gap: 16px;
 }
 
 #lock-wrapper {
 position: relative;
-width: 170px;
+width: 190px;
 }
 
 #lock {
-width: 170px;
+width: 190px;
 display: block;
 }
 
-/* input NA sliki locka */
+/* input on lock */
 #password {
 position: absolute;
 left: 50%;
 transform: translateX(-50%);
+bottom: 28px;
 
-/* to je približno na "tablici" locka */
-bottom: 26px;
+width: 125px;
+padding: 7px 10px;
 
-width: 110px;
-padding: 6px 8px;
 font-size: 14px;
+text-align: center;
 
 border: none;
 outline: none;
 border-radius: 6px;
 
-text-align: center;
-background: rgba(255,255,255,0.85);
+background: rgba(255, 255, 255, 0.85);
 }
 
+/* button under lock */
 #button {
-width: 110px;
+width: 120px;
 cursor: pointer;
+user-select: none;
 }
 
+/* ----------------------------
+CAT AREA
+---------------------------- */
 #cat-area {
 position: absolute;
 bottom: 45px;
@@ -80,29 +112,31 @@ right: 70px;
 
 display: flex;
 align-items: flex-end;
-gap: 12px;
+gap: 14px;
 }
 
+/* MUCA VEČJA */
 #cat {
-width: 95px;
+width: 140px;
 }
 
+/* speech bubble left of cat */
 #speech-wrapper {
 position: relative;
-width: 150px;
+width: 180px;
 }
 
 #speech {
-width: 150px;
+width: 180px;
 display: block;
 }
 
-/* tekst znotraj hint bubble */
+/* text inside bubble */
 #hint-text {
 position: absolute;
-top: 18px;
-left: 18px;
-width: 110px;
+top: 22px;
+left: 24px;
+width: 130px;
 
 margin: 0;
 font-size: 12px;
