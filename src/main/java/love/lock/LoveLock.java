@@ -61,7 +61,7 @@ public class LoveLock {
                     resp.message = "Zaklenjeno, počakaj 5 sekund";
                     resp.attemptsLeft = 0;
                     // fejk timer reset
-                    attemptsLeft = 1;
+                    attemptsLeft = 3;
                 }
             }
 
