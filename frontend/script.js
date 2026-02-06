@@ -90,20 +90,26 @@ body: JSON.stringify({ password: input.value })
 .then(res => res.json())
 .then(data => {
 
-// MUCA GOVORI BACKEND MESSAGE
+// BACKEND MESSAGE
 hintText.innerText = data.message;
+
+//reset
+input.value = "";
 
 // pravilno
 if (data.status === "correct") {
-setLocked(true); // da je "done"
+setLocked(true);
 return;
 }
 
 // napačno, attempts 0 => lockout
 if (data.status === "wrong" && data.attemptsLeft === 0) {
 startCountdown(5);
+}else{
+    input.focus()
 }
 })
+
 .catch(() => {
 hintText.innerText = "Muca ne najde strežnika 😿";
 });
