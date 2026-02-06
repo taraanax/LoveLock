@@ -69,6 +69,7 @@ countdownInterval = null;
 // po unlocku
 hintText.innerText = "Poskusi spet 😼";
 setLocked(false);
+input.focus();
 return;
 }
 
