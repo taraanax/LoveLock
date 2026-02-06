@@ -1,5 +1,5 @@
 const cat = document.getElementById("cat");
-const button = document.getElementById("button");
+const button = document.querySelector("#button");
 const input = document.getElementById("password");
 const hintText = document.getElementById("hint-text");
 const container = document.getElementById("container");

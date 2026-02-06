@@ -3,7 +3,6 @@
     src: url("PixelifySans.ttf") format("truetype");
 }
 
-/* pixel art crisp */
 img {
 image-rendering: pixelated;
 }
@@ -31,13 +30,11 @@ opacity: 0.55;
 background-image: url("heart1.png");
 background-repeat: repeat;
 
-/* tile = spacing */
 background-size: 220px 220px;
 
 animation: heartBeat 1s infinite;
 }
 
-/* SRČKI MANJŠI: ker si dala transparent border, se efektivno zmanjša */
 @keyframes heartBeat {
 0%, 100% { background-image: url("heart1.png"); }
 50% { background-image: url("heart2.png"); }
@@ -67,16 +64,16 @@ margin-top: 85px;
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 16px;
+gap: 18px;
 }
 
 #lock-wrapper {
 position: relative;
-width: 190px;
+width: 200px;
 }
 
 #lock {
-width: 190px;
+width: 200px;
 display: block;
 }
 
@@ -86,10 +83,10 @@ position: absolute;
 left: 50%;
 transform: translateX(-50%);
 
-bottom: 37px;
+bottom: 39px;
 
-width: 125px;
-height: 28px;
+width: 132px;
+height: 30px;
 
 padding: 0;
 font-size: 13px;
@@ -118,24 +115,32 @@ background-repeat: no-repeat;
 background-position: center;
 
 cursor: pointer;
+user-select: none;
 
 font-family: "PixelFont", monospace;
 font-size: 18px;
 color: #3a4a77;
 
-/* center text */
+
 display: flex;
 align-items: center;
 justify-content: center;
 
-/* da se ne selekta */
-user-select: none;
+position: relative;
+z-index: 9999;
+
+
+
 }
 
 #button:active {
-transform: translateY(2px);
+    transform: translateY(2px);
 }
 
+#button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
 
 
 /* ----------------------------
