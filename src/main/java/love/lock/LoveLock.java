@@ -5,11 +5,26 @@ import com.google.gson.Gson;
 
 public class LoveLock {
 
-    // geslo
-    static final String CORRECT_PASSWORD = "21.5.";
+    // stopnje
+    static Stage[] stages = new Stage[]{
+        new Stage("21.5.", new String[]{
+                "Pomemben datum",
+                "Čas mature"
+        }),
+        new Stage("sushi", new String[]{
+                "Go-to hrana",
+                "First date food"
+        }),
+        new Stage("7", new String[]{
+                "xx",
+                "Koliko mesecev sva že skupaj?"
+        })
+    };
 
     //  poskusi
     static int attemptsLeft = 3;
+    // stage
+    static int currentStage = 0;
 
     public static void main(String[] args) {
 
