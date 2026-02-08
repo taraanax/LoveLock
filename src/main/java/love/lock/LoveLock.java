@@ -89,4 +89,15 @@ public class LoveLock {
         String message;
         int attemptsLeft;
     }
+
+    // stage gesla
+    static class Stage {
+        String password;
+        String [] hints;
+
+        Stage(String password, String[] hints) {
+            this.hints = hints;
+            this.password = password;
+        }
+    }
 }
