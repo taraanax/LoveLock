@@ -55,7 +55,7 @@ function startCountdown(seconds) {
 let timeLeft = seconds;
 
 setLocked(true);
-hintText.innerText = `Zaklenjeno... ${timeLeft}s`;
+updateText(`Zaklenjeno... ${timeLeft}s`);
 
 countdownInterval = setInterval(() => {
 timeLeft--;
@@ -65,13 +65,13 @@ clearInterval(countdownInterval);
 countdownInterval = null;
 
 // po unlocku
-hintText.innerText = "Poskusi spet";
+updateText("Poskusi spet");
 setLocked(false);
 input.focus();
 return;
 }
 
-hintText.innerText = `Zaklenjeno... ${timeLeft}s`;
+updateText(`Zaklenjeno... ${timeLeft}s`);
 }, 1000);
 }
 
@@ -90,7 +90,7 @@ body: JSON.stringify({ password: input.value })
 .then(data => {
 
 // BACKEND MESSAGE
-hintText.innerText = data.message;
+updateText(data.message);
 
 //reset
 input.value = "";
@@ -110,7 +110,7 @@ startCountdown(5);
 })
 
 .catch(() => {
-hintText.innerText = "Muca ne najde strežnika";
+updateText("Muca ne najde strežnika");
 });
 }
 
@@ -120,3 +120,23 @@ input.addEventListener("keydown", (e) => {
 if (e.key === "Enter") checkPassword();
 });
 
+//zmanjsevanje fonta glede na size
+function fitText(element) {
+    let fontSize = 28;
+    element.style.fontSize = fontSize + "px";
+
+    while (
+        (element.scrollWidth > element.clientWidth ||
+         element.scrollHeight > element.clientHeight)
+        && fontSize > 6
+    ) {
+        fontSize--;
+        element.style.fontSize = fontSize + "px";
+    }
+}
+
+function updateText(newText) {
+    hintText.style.fontSize = "28px";
+    hintText.textContent = newText;
+    fitText(hintText);
+}
