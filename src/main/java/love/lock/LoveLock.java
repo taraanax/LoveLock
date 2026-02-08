@@ -48,7 +48,7 @@ public class LoveLock {
 
             if (enteredPassword.equals(CORRECT_PASSWORD)) {
                 resp.status = "correct";
-                resp.message = "Odklenjeno! Srečno Valentinovo :3";
+                resp.message = "Srečno Valentinovo :3";
                 resp.attemptsLeft = attemptsLeft;
             } else {
                 attemptsLeft--;

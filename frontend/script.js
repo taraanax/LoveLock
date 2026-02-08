@@ -22,9 +22,7 @@ container.style.transform = `translate(-50%, -50%) scale(${scale})`;
 window.addEventListener("resize", scaleUI);
 scaleUI();
 
-/* ----------------------------
-CAT ANIMATION
----------------------------- */
+/* CAT ANIMATION */
 let catToggle = false;
 setInterval(() => {
 cat.src = catToggle ? "cat1.png" : "cat2.png";
@@ -67,7 +65,7 @@ clearInterval(countdownInterval);
 countdownInterval = null;
 
 // po unlocku
-hintText.innerText = "Poskusi spet 😼";
+hintText.innerText = "Poskusi spet";
 setLocked(false);
 input.focus();
 return;
@@ -112,7 +110,7 @@ startCountdown(5);
 })
 
 .catch(() => {
-hintText.innerText = "Muca ne najde strežnika 😿";
+hintText.innerText = "Muca ne najde strežnika";
 });
 }
 
