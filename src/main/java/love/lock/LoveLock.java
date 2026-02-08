@@ -61,21 +61,51 @@ public class LoveLock {
 
             PasswordResponse resp = new PasswordResponse();
 
-            if (enteredPassword.equals(CORRECT_PASSWORD)) {
-                resp.status = "correct";
-                resp.message = "Srečno Valentinovo :3";
+            if (currentStage >= stages.length) {
+                resp.status = "done";
                 resp.attemptsLeft = attemptsLeft;
+                resp.stage = currentStage;
+                response.type("application/json");
+                return gson.toJson(resp);
+            }
+
+            Stage stage = stages[currentStage];
+
+            if (enteredPassword.equals(stage.password)) {
+                currentStage++;
+                attemptsLeft = 3;
+
+                if (currentStage < stages.length) {
+                    resp.status = "next";
+                    resp.message = "Bravo! Naslednje geslo...";
+                } else {
+                    resp.status = "correct";
+                    resp.message = "Odklenjeno! Srečno Valentinovo :3";
+                }
+
+                resp.attemptsLeft = attemptsLeft;
+                resp.stage = currentStage;
+
             } else {
                 attemptsLeft--;
                 resp.status = "wrong";
 
                 if (attemptsLeft > 0) {
-                    resp.message = getHint(attemptsLeft);
+                    int hintIndex = 3 - attemptsLeft - 1;
+
+                    if (hintIndex >= 0 && hintIndex < stage.hints.length) {
+                        resp.message = stage.hints[hintIndex];
+                    } else {
+                        resp.message = "Hmm... poskusi še enkrat";
+                    }
+
                     resp.attemptsLeft = attemptsLeft;
+                    resp.stage = currentStage;
+
                 } else {
                     resp.message = "Zaklenjeno, počakaj 5 sekund";
                     resp.attemptsLeft = 0;
-                    // fejk timer reset
+                    resp.stage = currentStage;
                     attemptsLeft = 3;
                 }
             }
@@ -86,13 +116,6 @@ public class LoveLock {
         });
     }
 
-    // namigi
-    private static String getHint(int attemptsLeft) {
-        if (attemptsLeft == 2) return "Pomemben datum";
-        if (attemptsLeft == 1) return "Čas mature";
-        return "";
-    }
-
     //  JSON body
     static class PasswordRequest {
         String password;
@@ -100,6 +123,7 @@ public class LoveLock {
 
     // JSON response
     static class PasswordResponse {
+        int stage;
         String status;
         String message;
         int attemptsLeft;
