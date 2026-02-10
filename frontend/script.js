@@ -4,9 +4,17 @@ const input = document.getElementById("password");
 const hintText = document.getElementById("hint-text");
 const container = document.getElementById("container");
 
-/* ----------------------------
-UI SCALE (fixed ratio)
----------------------------- */
+/* da katex dela */
+function renderHint(msg) {
+    if (msg.includes("\\") && window.katex) {
+        hintText.innerHTML = "";
+        katex.render(msg, hintText, { throwOmError: false });
+    } else {
+        hintText.textContent.innerText = msg;
+    }
+}
+
+/* UI SCALE */
 function scaleUI() {
 const baseWidth = 900;
 const baseHeight = 650;
@@ -29,9 +37,7 @@ cat.src = catToggle ? "cat1.png" : "cat2.png";
 catToggle = !catToggle;
 }, 500);
 
-/* ----------------------------
-LOCKOUT COUNTDOWN
----------------------------- */
+/* LOCKOUT COUNTDOWN */
 let locked = false;
 let countdownInterval = null;
 
@@ -75,9 +81,7 @@ updateText(`Zaklenjeno... ${timeLeft}s`);
 }, 1000);
 }
 
-/* ----------------------------
-API CALL
----------------------------- */
+/* API CALL */
 function checkPassword() {
 if (locked) return;
 
@@ -91,6 +95,7 @@ body: JSON.stringify({ password: input.value })
 
 // BACKEND MESSAGE
 updateText(data.message);
+renderHint(data.message);
 
 //reset
 input.value = "";

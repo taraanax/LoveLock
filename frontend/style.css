@@ -188,6 +188,9 @@ text-align: center;
 
 margin: 0;
 font-size: 28px;
+.katex {
+    font-size: 1.15em;
+}
 color: #222;
 line-height: 1.2;
 font-family: "PixelFont", monospace;
