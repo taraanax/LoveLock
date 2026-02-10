@@ -16,7 +16,7 @@ public class LoveLock {
                 "First date food"
         }),
         new Stage("7", new String[]{
-                "xx",
+                "\\int_{0}^{1}\\left(7 + \ln\\left(\\frac{e}{e}\\right)\\cdot\\frac{\\sin(420x)}{x^2+1}\\right)\\,dx",
                 "Koliko mesecev sva že skupaj?"
         })
     };
