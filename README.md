@@ -14,4 +14,5 @@ cd lovelock
 ꒰ ˶• ༝ •˶꒱       ♡‧₊˚    ♡
 ./づ~ :¨·.·¨:     ₊˚  
            `·..·‘    ₊˚   ♡
+</pre>
 narejeno z ljubeznijo 
