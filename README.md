@@ -9,5 +9,8 @@ cute little valentine's project.
 git clone https://github.com/taraanax/lovelock.git
 cd lovelock
 ```
-
+<pre lang="text">   /ᐢ⑅ᐢ\   ♡   ₊˚  
+꒰ ˶• ༝ •˶꒱       ♡‧₊˚    ♡
+./づ~ :¨·.·¨:     ₊˚  
+           `·..·‘    ₊˚   ♡
 narejeno z ljubeznijo 
