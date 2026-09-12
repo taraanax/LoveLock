@@ -54,7 +54,6 @@ public class LoveLock {
         port(4567);
         Gson gson = new Gson();
 
-        // absolutno zero clue
         options("/*", (request, response) -> {
             String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
             if (accessControlRequestHeaders != null) {
@@ -76,7 +75,7 @@ public class LoveLock {
 
 
 
-        // POST request za preverjanje gesla
+        // POST request
         post("/check", (request, response) -> {
 
             PasswordRequest data = gson.fromJson(request.body(), PasswordRequest.class);

@@ -156,7 +156,6 @@ align-items: flex-end;
 gap: 14px;
 }
 
-/* MUCA VEČJA */
 #cat {
 width: 190px;
 }
@@ -171,6 +170,7 @@ width: 220px;
 width: 220px;
 display: block;
 }
+
 
 /* text inside bubble */
 
@@ -193,7 +193,7 @@ display: block;
 
     margin: 0;
 
-    overflow: visible;
+    overflow: hidden;
 
     white-space: normal;
 
@@ -206,6 +206,7 @@ display: block;
     background: transparent;
 
     word-wrap: break-word;
+
 }
 
 
@@ -213,7 +214,7 @@ display: block;
 
 #hint-text .katex {
 
-    transform: scale(0.35);
+    transform: scale(0.45);
 
     transform-origin: center;
 
