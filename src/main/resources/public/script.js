@@ -168,7 +168,7 @@ function checkPassword() {
 
     if (locked) return;
 
-    fetch("http://localhost:4567/check", {
+    fetch("/check", {
 
         method: "POST",
 
