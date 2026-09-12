@@ -2,8 +2,31 @@ package love.lock;
 
 import static spark.Spark.*;
 import com.google.gson.Gson;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class LoveLock {
+
+    //meseci skupaj
+    static String getMonthsTogether() {
+    LocalDate startDate = LocalDate.of(2025, 7, 11);
+    LocalDate today = LocalDate.now();
+
+    Period period = Period.between(startDate, today);
+
+    int months = period.getYears() * 12 + period.getMonths();
+
+    return String.valueOf(months);
+    }
+
+    //integral
+    static String getIntegral() {
+    int months = Integer.parseInt(getMonthsTogether());
+
+    return "\\int_0^1 " +
+           months +
+           "(\\sin^2(x)+\\cos^2(x))\\,dx";
+    }
 
     // stopnje
     static Stage[] stages = new Stage[]{
@@ -15,8 +38,8 @@ public class LoveLock {
                 "Go-to hrana",
                 "First date food"
         }),
-        new Stage("7", new String[]{
-                "\\int_{0}^{\\pi/4} -\\frac{56}{\\pi ln 2}\\,\\ln\\!\\left(\\frac{\\sin x}{\\cos x}\\right)\\, \\frac{1}{2}\\, dx",
+        new Stage(getMonthsTogether(), new String[]{
+                getIntegral(),                    
                 "Koliko mesecev sva že skupaj?"
         })
     };
