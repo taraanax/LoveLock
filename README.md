@@ -17,7 +17,7 @@ cd LoveLock
 ## ₊‧°𐐪♡𐑂°‧₊ Linux
 
 <a href="https://github.com/taraanax/LoveLock/raw/main/LoveLock-Linux.zip">
-  <img src="https://img.shields.io/badge/♡%20Download-LoveLock%20for%20Linux-6d82bc?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/%20Download-LoveLock%20for%20Linux-6d82bc?style=for-the-badge" />
 </a>
 
 1. download `LoveLock-Linux.zip`
