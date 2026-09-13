@@ -163,8 +163,28 @@ public class LoveLock {
 
         try {
             String url = "http://localhost:4567";
-            new ProcessBuilder("xdg-open", url)
-                .start();
+
+            String os = System.getProperty("os.name").toLowerCase();
+
+            if (os.contains("win")) {
+
+                new ProcessBuilder(
+                    "cmd",
+                    "/c",
+                    "start",
+                    "",
+                    url
+                ).start();
+
+            } else if (os.contains("linux")) {
+
+                new ProcessBuilder(
+                    "xdg-open",
+                    url
+                ).start();
+
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
