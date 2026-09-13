@@ -31,7 +31,7 @@ cd LoveLock
 
 ## ₊‧°𐐪♡𐑂°‧₊ Windows
 
-<a href="https://github.com/taraanax/LoveLock/raw/main/LoveLockInstaller/LoveLockInstaller.exe">
+<a href="https://github.com/taraanax/LoveLock/raw/main/LoveLockInstaller/LoveLock-1.0.exe">
   <img src="https://img.shields.io/badge/%20Download-LoveLock%20for%20Windows-95afe8?style=for-the-badge" />
 </a>
 
