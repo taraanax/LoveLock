@@ -244,3 +244,11 @@ input.addEventListener("keydown", (e) => {
     }
 
 });
+
+/* ----------------------------
+   SHUTDOWN
+---------------------------- */
+
+window.addEventListener("beforeunload", () => {
+    navigator.sendBeacon("/shutdown");
+});

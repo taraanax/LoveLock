@@ -4,8 +4,6 @@ import static spark.Spark.*;
 import com.google.gson.Gson;
 import java.time.LocalDate;
 import java.time.Period;
-import java.awt.Desktop;
-import java.net.URI;
 
 public class LoveLock {
 
@@ -54,6 +52,13 @@ public class LoveLock {
     public static void main(String[] args) {
 
         port(4567);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("LoveLock se zapira...");
+            stop();
+            awaitStop();
+        }));
+
         staticFiles.location("/public");
         Gson gson = new Gson();
 
@@ -142,12 +147,24 @@ public class LoveLock {
 
         awaitInitialization();
 
+        post("/shutdown", (request, response) -> {
+
+            new Thread(() -> {
+                try {
+                    Thread.sleep(500);
+                    stop();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }).start();
+
+    return "LoveLock se zapira...";
+});
+
         try {
-            if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().browse(
-                    new URI("http://localhost:4567")
-                );
-            }
+            String url = "http://localhost:4567";
+            new ProcessBuilder("xdg-open", url)
+                .start();
         } catch (Exception e) {
             e.printStackTrace();
         }
