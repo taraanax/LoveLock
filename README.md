@@ -29,7 +29,10 @@ cd LoveLock
 
 ## ₊‧°𐐪♡𐑂°‧₊ Windows
 
-> 🚧 in progress... 🚧
+**[LoveLock Installer for Windows](LoveLockInstaller.exe)**
+
+1. download `LoveLockInstaller.exe`
+2. run as administrator
 
 
 <pre lang="text">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠊⠙⠢⠤⠤⢄⠀
