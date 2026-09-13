@@ -16,7 +16,9 @@ cd LoveLock
 
 ## ₊‧°𐐪♡𐑂°‧₊ Linux
 
-**[LoveLock.zip for Linux](LoveLock-Linux.zip)**
+<a href="https://github.com/taraanax/LoveLock/raw/main/LoveLock-Linux.zip">
+  <img src="https://img.shields.io/badge/♡%20Download-LoveLock%20for%20Linux-6d82bc?style=for-the-badge" />
+</a>
 
 1. download `LoveLock-Linux.zip`
 2. extract it
@@ -29,7 +31,9 @@ cd LoveLock
 
 ## ₊‧°𐐪♡𐑂°‧₊ Windows
 
-**[LoveLock Installer for Windows](LoveLockInstaller.exe)**
+<a href="https://github.com/taraanax/LoveLock/raw/main/LoveLockInstaller/LoveLockInstaller.exe">
+  <img src="https://img.shields.io/badge/%20Download-LoveLock%20for%20Windows-95afe8?style=for-the-badge" />
+</a>
 
 1. download `LoveLockInstaller.exe`
 2. run as administrator
